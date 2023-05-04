@@ -1,0 +1,14 @@
+body {
+    padding-left: 30 rem;
+    padding-right: 30 rem;
+}
+
+.card {
+    padding-left: 30 rem;
+    padding-right: 30 rem;
+    background-color: lightblue;
+    border-style:solid;
+}
+
+.content{
+}
