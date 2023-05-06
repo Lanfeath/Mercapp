@@ -1,56 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 :root{
     --header-height: 5rem;
-    --nav-width: 20rem;
-    --first-color: #4723D9;
-    --first-color-light: #dff0d5;
     --white-color: #F7F6FB;
+    --dark-green-color: #00754d;
+    --light-green-color: #00CC86;
+    --lighter-green-color: #99FFCC;
+    --light-blue-color: #DAEAF7;
+    --lighter-blue-color: #EDF6F7;
+    --light-yellow-color: #F5F5F5;
     --body-font: 'Nunito', sans-serif;
+    --normal-font-color: #005E3E;
+    --promotion-font-color: #990000;
     --normal-font-size: 1rem;
-    --z-fixed: 100
+    --z-fixed: 80
 }
 
 *,::before,::after{
     box-sizing: border-box
 }
 
-body {
-    position: relative;
-    margin: var(--header-height) 0 0 0;
-    padding: 0 1rem;
-    font-family: var(--body-font);
-    font-size: var(--normal-font-size);
-    transition: .5s
-}
-
 a{
     text-decoration: none
 }
 
-.header{width: 100%;
+.header{
     height: var(--header-height);
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
-    background-color: var(--white-color);
+    background-color: var(--dark-green-color);
+    color: var(--white-color);
     z-index: var(--z-fixed);
     transition: .5s
 }
 
-.header_toggle{
-    color: black;
-    font-size: 1.5rem;cursor: pointer
-}
-
 .l-navbar{
     position: fixed;
-    top: 0;
-    left: -30%;width: var(--nav-width);
-    height: 100vh;background-color: var(--first-color);
+    top: 25%;
+    width: 40%
+    height: 100vh;
+    background-color: var(--light-green-color);
     padding: .5rem 1rem 0 0;transition: .5s;
     z-index: var(--z-fixed)
 }
@@ -85,7 +73,7 @@ a{
 
 .nav_link{
     position: relative;
-    color: var(--first-color-light);
+    color: var(--white-color);
     margin-bottom: 1.5rem;transition: .3s
 }
 
@@ -97,14 +85,16 @@ a{
     font-size: 1.25rem
 }
 
-.show{left: 0}
+.show{
+    left: 0
+}
 
 .body-pd{
     padding-left: calc(var(--nav-width) + 1rem)
 }
 
 .active{
-    color: var(--white-color)
+    color: var(--dark-green-color)
 }
 
 .active::before{
@@ -120,22 +110,9 @@ a{
 }
 
 @media screen and (min-width: 768px){
-    body{
-        margin: calc(var(--header-height) + 1rem) 0 0 0;
-        padding-left: calc(var(--nav-width) + 2rem)
-    }
-
     .header{
         height: calc(var(--header-height) + 1rem);
         padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
-    }
-
-    .header_img{
-        width: 40px;height: 40px
-    }
-
-    .header_img img{
-        width: 45px
     }
 
     .l-navbar{
@@ -152,11 +129,65 @@ a{
     }
 }
 
-.card {
-    background-color: lightblue;
-    border-style:solid;
-    padding : 5 rem;
+.body{
+    padding:30px;
 }
 
-.content{
+.footer {
+    background-color: var(--dark-green-color);
+    color: var(--white-color);
+}
+
+.background {
+    height: 100vh;
+    background-color: var(--light-yellow-color);
+}
+
+.side-background {
+    height: 100vh;
+    background-color: var(--light-blue-color);
+}
+
+.card {
+    width: 90%;
+    padding: 30 px;
+    background-color: var(--lighter-blue-color);
+    border-style:solid;
+    border-radius: 25px;
+
+}
+
+.border{
+    border-style:solid;
+    margin: 10px;
+    text-align: center;
+    vertical-align: baseline;
+    border-color: white;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: solid;
+    border-color: black;
+}
+
+.category{
+    background-color: var(--lighter-green-color);
+    height: 50px;
+
+}
+
+.product{
+    background-color: var(--light-blue-color);
+    height: 50px;
+
+}
+
+.description_product, .price{
+    background-color: var(--light-blue-color);
+    height: 100px;
+    position: relative;
+
 }

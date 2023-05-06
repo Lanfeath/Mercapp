@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>MERC'APP Product catalogue</title>
+    <title> MERC'APP Product catalogue</title>
 
     <!-- Custom CSS -->
     <link href="./css/custom.css" rel="stylesheet">
-    <script src="./js/custom.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -23,90 +22,128 @@
 
 <body>
 
-    <header class="header" id="header">
-        <div class="header_toggle">
-            <i class='bx bx-menu' id="header-toggle"></i>
-        </div>
-        <span> MERC'APP </span>
-    </header>
+    <div class="content col">
+
+        <div class="col-md-2 side-background">
 <!-- Navigation -->
-    <div class="l-navbar" id="nav-bar">
-        <nav class="nav">
-            <div>
-                    <span class="nav_logo-name">Menu</span>
-                <div class="nav_list">
-                    <a href="#" class="nav_link active">
-                        <i class='bx bx-grid-alt nav_icon'></i>
-                        <span class="nav_name">Catalogue</span>
-                    </a>
-                    <a href="#" class="nav_link active">
-                        <i class='bx bx-grid-alt nav_icon'></i>
-                        <span class="nav_name">Ajouter un produit</span>
-                    </a>
-                    <a href="#" class="nav_link">
-                        <i class='bx bx-user nav_icon'></i>
-                        <span class="nav_name">Ajouter une promotion</span>
-                    </a>
-                    <a href="#" class="nav_link">
-                        <i class='bx bx-message-square-detail nav_icon'></i>
-                        <span class="nav_name">rouver un magasin</span>
-                    </a>
-                </div>
+            <div class="l-navbar" id="nav-bar">
+                <nav class="nav">
+                    <div>
+                        <span class="nav_logo-name">Menu</span>
+                        <div class="nav_list">
+                            <a href="#" class="nav_link active">
+                                <i class='bx bx-grid-alt nav_icon'></i>
+                                <span class="nav_name">Catalogue</span>
+                            </a>
+                            <a href="#" class="nav_link active">
+                                <i class='bx bx-grid-alt nav_icon'></i>
+                                <span class="nav_name">Ajouter un produit</span>
+                            </a>
+                            <a href="#" class="nav_link">
+                                <i class='bx bx-user nav_icon'></i>
+                                <span class="nav_name">Ajouter une promotion</span>
+                            </a>
+                            <a href="#" class="nav_link">
+                                <i class='bx bx-message-square-detail nav_icon'></i>
+                                <span class="nav_name">Trouver un magasin</span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
             </div>
-        </nav>
-    </div>
+        </div>
 
 
 <!-- Contents -->
-    <div class="flex">
-        <div class="row">
-            <div class="card">
+
+        <div class="col-md-8 background text-center align-baseline">
+            <div class="header col-md-12" id="header">
+                <span> MERC'APP </span>
+            </div>
+
+            <div class="col-md-8">
+                <span class="text-center">Notre catalogue de produits</span>
+            </div>
+
+            <div class ="card col-md-6 ">
                 <div class="row">
-                    <div class="col-sm-3 col-sm-offset-3">
-                        <img class="img-circle" src="image1">
+                    <div class="col-md-3 image">
+                        <img class="img-circle" src="./image_1_legumes.jpg">
                     </div>
-                    <div class="col-sm-3 col-sm-offset-3">
-                        <h2 id="product_name">Product1</h2>
+                    <div class="col-md-3 border product">
+                        <p>Product1</p>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-3">
-                        <h2 id="category">Category1</h2>
+                    <div class="col-md-3 align-middle border category">
+                        <p>Category1</p>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-3">
-                        <p id="description">Description of product 1</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 border description_product">
+                        <p>Description of product 1</p>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-3">
-                        <p id="product_price">50€</p>
+                    <div class="col-md-3 border price">
+                        <p>50€</p>
                     </div>
                 </div>
             </div>
 
-            <div class="card">
+            <div class ="card col-md-6">
                 <div class="row">
-                    <div class="col-sm-3 col-sm-offset-3">
-                        <img class="img-circle" src="image2">
+                    <div class="col-md-3 image">
+                        <img class="img-circle" src="./image_1_legumes.jpg">
                     </div>
-                    <div class="col-sm-3 col-sm-offset-3">
-                        <h2 id="product_name">Product2</h2>
+                    <div class="col-md-3 border product">
+                        <p>Product1</p>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-3">
-                        <h2 id="category">Category2</h2>
+                    <div class="col-md-3 align-middle border category">
+                        <p>Category1</p>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-3">
-                        <p id="description">Description of product 2</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 border description_product">
+                        <p>Description of product 1</p>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-3">
-                        <p id="product_price">30€</p>
+                    <div class="col-md-3 border price">
+                        <p>50€</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class ="card col-md-6">
+                <div class="row">
+                    <div class="col-md-3 image">
+                        <img class="img-circle" src="./image_1_legumes.jpg">
+                    </div>
+                    <div class="col-md-3 border product">
+                        <p>Product1</p>
+                    </div>
+                    <div class="col-md-3 align-middle border category">
+                        <p>Category1</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 border description_product">
+                        <p>Description of product 1</p>
+                    </div>
+                    <div class="col-md-3 border price">
+                        <p style="vertical-align: center;">50€</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="lateral-col col-md-2 side-background"></div>
     </div>
 
 <!-- Footer -->
     <footer>
-        <div class="footer-below">
-            <div class="container">
-                <div class="socials">
+        <div class="lateral-col col-md-2 side-background"></div>
+        <div class="col-md-8 footer footer-below">
+            <div class="row">
+                <div class="socials col-md-6">
                     <ul>
                         <li>Facebook</li>
                         <li>Twitter</li>
@@ -114,14 +151,17 @@
                         <li>Linkedin</li>
                     </ul>
                 </div>
-                <div>
-                    <a href="/">Politique de confidentialité</a>
-                </div>
-                <div>
-                    <a href="/">Conditions générales de vente</a>
+                <div class="col-md-6">
+                    <div>
+                        <a href="/">Politique de confidentialité</a>
+                    </div>
+                    <div>
+                        <a href="/">Conditions générales de vente</a>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="lateral-col col-md-2 side-background"></div>
     </footer>
 
 <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
