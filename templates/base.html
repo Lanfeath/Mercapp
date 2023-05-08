@@ -7,7 +7,7 @@
     <title> MERC'APP Product catalogue</title>
 
     <!-- Custom CSS -->
-    <link href="./css/custom.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -55,88 +55,14 @@
 
 
 <!-- Contents -->
-
         <div class="col-md-8 background text-center align-baseline">
             <div class="header col-md-12" id="header">
                 <span> MERC'APP </span>
             </div>
+{% block content %}
+{% endblock %}
 
-            <div class="col-md-8">
-                <span class="text-center">Notre catalogue de produits</span>
-            </div>
-
-            <div class ="card col-md-6 ">
-                <div class="row">
-                    <div class="col-md-3 image">
-                        <img class="img-circle" src="./image_1_legumes.jpg">
-                    </div>
-                    <div class="col-md-3 border product">
-                        <p>Product1</p>
-                    </div>
-                    <div class="col-md-3 align-middle border category">
-                        <p>Category1</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 border description_product">
-                        <p>Description of product 1</p>
-                    </div>
-                    <div class="col-md-3 border price">
-                        <p>50€</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class ="card col-md-6">
-                <div class="row">
-                    <div class="col-md-3 image">
-                        <img class="img-circle" src="./image_1_legumes.jpg">
-                    </div>
-                    <div class="col-md-3 border product">
-                        <p>Product1</p>
-                    </div>
-                    <div class="col-md-3 align-middle border category">
-                        <p>Category1</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 border description_product">
-                        <p>Description of product 1</p>
-                    </div>
-                    <div class="col-md-3 border price">
-                        <p>50€</p>
-                    </div>
-                </div>
-            </div>
-
-             <div class ="card col-md-6">
-                <div class="row">
-                    <div class="col-md-3 image">
-                        <img class="img-circle" src="./image_1_legumes.jpg">
-                    </div>
-                    <div class="col-md-3 border product">
-                        <p>Product1</p>
-                    </div>
-                    <div class="col-md-3 align-middle border category">
-                        <p>Category1</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 border description_product">
-                        <p>Description of product 1</p>
-                    </div>
-                    <div class="col-md-3 border price">
-                        <p style="vertical-align: center;">50€</p>
-                    </div>
-                </div>
-            </div>
         </div>
-
-        <div class="lateral-col col-md-2 side-background"></div>
-    </div>
 
 <!-- Footer -->
     <footer>

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+            <div class="col-md-8">
+                <span class="text-center">{{title}}</span>
+            </div>
+
+            <div class ="card col-md-6 ">
+                <div class="row">
+                    <div class="col-md-3 image">
+                        <img class="img-circle" src="{{image1}}">
+                    </div>
+                    <div class="col-md-3 border product">
+                        <p>{{product1}}</p>
+                    </div>
+                    <div class="col-md-3 align-middle border category">
+                        <p>{{category1}}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 border description_product">
+                        <p>{{description1}}</p>
+                    </div>
+                    <div class="col-md-3 border price">
+                        <p>{{price1}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class ="card col-md-6">
+                <div class="row">
+                    <div class="col-md-3 image">
+                        <img class="img-circle" src="../../static/temp/image_1_legumes.jpg">
+                    </div>
+                    <div class="col-md-3 border product">
+                        <p>Product1</p>
+                    </div>
+                    <div class="col-md-3 align-middle border category">
+                        <p>Category1</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 border description_product">
+                        <p>Description of product 1</p>
+                    </div>
+                    <div class="col-md-3 border price">
+                        <p>50€</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class ="card col-md-6">
+                <div class="row">
+                    <div class="col-md-3 image">
+                        <img class="img-circle" src="../temp/image_1_legumes.jpg">
+                    </div>
+                    <div class="col-md-3 border product">
+                        <p>Product3</p>
+                    </div>
+                    <div class="col-md-3 align-middle border category">
+                        <p>Category3</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 border description_product">
+                        <p>Description of product 3</p>
+                    </div>
+                    <div class="col-md-3 border price">
+                        <p style="vertical-align: center;">70€</p>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
