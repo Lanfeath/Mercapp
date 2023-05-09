@@ -7,6 +7,11 @@ def find_admin(login):
     return admin
 
 
+def get_all_products():
+    products = Product.query.all()
+    return products
+
+
 def find_product(product_id):
     products = Product.query.filter(Product.id == Product[product_id]).all()
     return products

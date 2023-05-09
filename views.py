@@ -7,25 +7,45 @@ app.config.from_object('config')
 
 # To get one variable, tape app.config['MY_VARIABLE']
 
-from .utils import Administrator
+from .utils import get_all_products
+
 
 @app.route('/')
 @app.route("/index/")
 def index():
-    title= "Notre catalogue de produits"
-    image1= './static/temp/image_1_legumes.jpg'
-    product1="Test1"
-    category1="Cat1 de test"
-    description1 = "This is a test"
-    price1="50000€"
+    products = [
+        {
+            'picture': '/static/temp/banane.jpg',
+            'title': "Test1",
+            'category': "Cat1 de test",
+            'description': "This is a test",
+            'price': "50000€",
+            'promotion': "0",
+        },
+        {
+            'picture': '/static/temp/parfum_hugo.jpg',
+            'title': "Test2",
+            'category': "Cat de test 2",
+            'description': "This is a 2nd test",
+            'price': "2*50000€",
+            'promotion': "0.2",
+        },
+        {
+            'picture': '../static/temp/poivrons.jpg',
+            'title': "Test3",
+            'category': "Cat de test 3e",
+            'description': "This is Gioia",
+            'price': "1000€",
+            'promotion': "0.3",
+        },
+    ]
+
+    product_database=get_all_products()
+
     return render_template("index.html",
-                            title=title,
-                            image1=image1,
-                            product1 =product1,
-                            category1 = category1,
-                            description1 = description1,
-                            price1 = price1
-                            )
+                           title="Notre catalogue de produits",
+                           products=product_database,
+                           )
 
 
 @app.route('/result/')
