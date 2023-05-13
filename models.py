@@ -20,14 +20,15 @@ class Product(db.Model):
     picture = db.Column(db.String(200), nullable=False)
     category = db.Column(db.String(50), nullable=True)
     promotion = db.Column(db.Integer, nullable=True)
-
-    def __init__(self, title, description, price, picture, category, promotion):
+    unit = db.Column(db.Integer, nullable=True)
+    def __init__(self, title, description, price, picture, category, promotion, unit):
         self.title = title
         self.description = description
         self.price = price
         self.picture = picture
         self.category = category
         self.promotion = promotion
+        self.unit = unit
 
 
 class Promotion(db.Model):

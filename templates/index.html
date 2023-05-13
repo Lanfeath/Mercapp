@@ -25,7 +25,8 @@
                             <p>{{product.description}}</p>
                         </div>
                         <div class="col-md-3 border price">
-                            <p>{{product.price}}</p>
+                            <p {% if product.promotion %} class="old_price"{% endif %}>{{product.price |float }} {{product.unit}}</p>
+                            {% if product.promotion %}<p {% if product.promotion %} class="prom_price"{% endif %}>{% print(product.price * (1 - product.promotion))|round(2, 'floor') %} {{product.unit}}</p>{% endif %}
                         </div>
                     </div>
                 </div>

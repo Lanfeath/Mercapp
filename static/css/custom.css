@@ -191,3 +191,12 @@ img{
     position: relative;
 
 }
+
+.old_price{
+    text-decoration: line-through;
+}
+
+.prom_price {
+    color: red;
+    font-weight: bold;
+}
