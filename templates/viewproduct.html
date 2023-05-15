@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+                {% if message %}
+                    <div> {% print(message) %}</div>
+                {% endif %}
 
-            {% for product in products %}
+                {% for product in products %}
 
                 <div class ="card col-md-6 ">
                     <div class="row">
@@ -26,8 +29,16 @@
                             {% if product.promotion %}<p {% if product.promotion %} class="prom_price"{% endif %}>{% print(product.price * (1 - product.promotion))|round(2, 'floor') %} {{product.unit}}</p>{% endif %}
                         </div>
                     </div>
+
+                        <div class="row ">
+                            {% if product.promotion %}
+                                <a class="border existing_promotion" href="{{ url_for('promotion',product_id= product.id ) }}" >Modifier la promotion </a>
+                            {% else %}
+                                <a class="border new_promotion" href="{{ url_for('promotion',product_id=product.id  ) }}" >Ajouter une promotion </a>
+                            {% endif %}
+                        </div>
                 </div>
 
-            {% endfor %}
+                {% endfor %}
 
 {% endblock %}

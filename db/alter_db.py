@@ -5,7 +5,7 @@ cursor = conn.cursor()
 
 # # insert a record into the administrator table in the db_mercapp database
 cursor.execute("""ALTER TABLE product 
-                RENAME COLUMN id_promotion TO promotion;"""
+                RENAME COLUMN id TO product_id;"""
                )
 # save data
 conn.commit()

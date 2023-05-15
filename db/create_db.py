@@ -11,8 +11,13 @@ cursor.execute("""CREATE TABLE administrator
 
 # create a table
 cursor.execute("""CREATE TABLE product
-                  (id_product INT, title TEXT, description TEXT, price FLOAT,
-                   picture TEXT, category TEXT, id_promotion INT)
+                  (id INTEGER PRIMARY KEY, 
+                  title TEXT not null, 
+                  description TEXT not null, 
+                  price FLOAT not null,
+                   picture TEXT not null, 
+                   category TEXT not null, 
+                   promotion FLOAT)
                """)
 
 # create a table

@@ -8,6 +8,7 @@
     --light-blue-color: #DAEAF7;
     --lighter-blue-color: #EDF6F7;
     --light-yellow-color: #F5F5F5;
+    --light-red-color: red;
     --body-font: 'Nunito', sans-serif;
     --normal-font-color: #005E3E;
     --promotion-font-color: #990000;
@@ -154,7 +155,19 @@ a{
     background-color: var(--lighter-blue-color);
     border-style:solid;
     border-radius: 25px;
+    padding:10px;
 
+}
+
+.product_card{
+    height:400px;
+    position:relative;
+}
+
+.product_card_child{
+    position:absolute; top:40%;
+    height:10em;
+    margin-top:-5em;
 }
 
 .border{
@@ -191,6 +204,23 @@ img{
     position: relative;
 
 }
+
+.existing_promotion, .new_promotion{
+    height: 50px;
+    position: relative;
+    color:white;
+    border-radius:20px;
+    padding:5px;
+}
+
+.existing_promotion{
+    background-color: var(--light-green-color);;
+}
+
+.new_promotion{
+    background-color: var(--light-red-color);;
+}
+
 
 .old_price{
     text-decoration: line-through;

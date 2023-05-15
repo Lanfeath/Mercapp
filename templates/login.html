@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+                <form method="POST" >
+
+                    {{ form.csrf_token }}
+
+                    <div class ="card col-md-12 ">
+                        <div class="login_card_child row" style="margin:10px">
+                            <div class="col-md4" >{{ form.login.label }}</div>
+                            <div class="col-md8">{{ form.login() }}</div>
+                        </div>
+
+                        <div class="login_card_child row" style="margin:10px">
+                            <div class="col-md4">{{ form.password.label }}</div>
+                            <div class="col-md8">{{ form.password() }}</div>
+                        </div>
+
+                       <div style="margin:10px"> {{form.submit}} </div>
+
+                       <div>Message: {{message}} </div>
+                </form>
+
+
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+                <div class ="card col-md-12 product_card">
+
+                     <form class="product_card_child col-md-12" id="form1" runat="server" method="POST" enctype="multipart/form-data">
+                         {{ form.csrf_token }}
+                        <div class="col-md-2">
+                                <input type='file' id="imgInp" style="display:none" />
+                                <img id="blah" style="border-radius:50%" src="{{url_for('static', filename='temp/choose_an_image.jpg')}}"
+                                     alt="your image" height="300px" width="300px"/>
+                        </div>
+
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{form.category.label}}
+                                </div>
+                                <div class="col-md-8">
+                                    {{form.category()}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{form.title.label}}
+                                </div>
+                                <div class="col-md-8">
+                                    {{form.title()}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{form.description.label}}
+                                </div>
+                                <div class="col-md-8">
+                                    {{form.description()}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{form.price.label}}
+                                </div>
+                                <div class="col-md-8">
+                                    {{form.price()}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{form.unit.label}}
+                                </div>
+                                <div class="col-md-8">
+                                    {{form.unit()}}
+                                </div>
+                             </div>
+
+                        </div>
+                         {{form.submit}}
+                    </form>
+
+                </div>
+
+<script>
+$('#blah').click(function(){
+   $('#imgInp').click();
+})
+
+
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+</script>
+
+{% endblock %}

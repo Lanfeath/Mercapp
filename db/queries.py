@@ -23,9 +23,17 @@ def select_using_like(cursor, text):
     cursor.execute(sql)
     print(cursor.fetchall())
 
+def find_product(product_id):
+    sql = f"""
+        SELECT * FROM product
+        WHERE product_id LIKE '{product_id}%'"""
+    cursor.execute(sql)
+    print(cursor.fetchall())
+
 
 if __name__ == '__main__':
     cursor = get_cursor()
-    select_all_records_by_category(cursor,
-                                   id_promotion='1')
-    select_using_like(cursor, text='poivrons')
+    # select_all_records_by_category(cursor,
+    #                                id_promotion='1')
+    # select_using_like(cursor, text='poivrons')
+    find_product(2)
