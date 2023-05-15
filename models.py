@@ -82,7 +82,7 @@ class AddProductForm(FlaskForm):
 
 class AddPromotiontForm(FlaskForm):
     percentage = DecimalField('% de promotion:', validators=[DataRequired()])
-    start_date = DateField('Date de fin de la promotion:', validators=[DataRequired()])
+    start_date = DateField('Date de début de la promotion:', validators=[DataRequired()])
     end_date = DateField('Date de fin de la promotion:', validators=[DataRequired()])
     submit = SubmitField()
 

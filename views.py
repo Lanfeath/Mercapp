@@ -1,6 +1,7 @@
 from flask import Flask, flash, render_template, request, url_for, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ login_manager.login_view = "login"
 # Config options - Make sure you created a 'config.py' file.
 app.config.from_object('config')
 
-from .utils import get_all_products, find_admin
+from .utils import get_all_products, find_admin, find_product, get_promotions
 from .models import *
 
 
@@ -19,11 +20,13 @@ from .models import *
 @app.route("/index/")
 def index():
     product_database = get_all_products()
+    promotions = get_promotions()
 
     return render_template("index.html",
                            css_file=url_for('static', filename='css/custom.css'),
                            title="Notre catalogue de produits",
                            products=product_database,
+                           promotions=promotions
                            )
 
 
@@ -34,11 +37,13 @@ def addpromotion():
     message = request.args.get('message')
 
     product_database = get_all_products()
+    promotions = get_promotions()
 
     return render_template("viewproduct.html",
                            css_file=url_for('static', filename='css/custom.css'),
                            title="Ajouter une promotion",
                            products=product_database,
+                           promotions=promotions,
                            message=message,
                            )
 
@@ -67,7 +72,7 @@ def addproduct():
 
         # create a message to send to the template
         message = f"Les donnèes du nouveau produit {title} ont été insérées."
-        return redirect(url_for("index", message=message))
+        return redirect(url_for("viewproduct", message=message))
 
     return render_template('addproduct.html',
                            css_file=url_for('static', filename='css/custom.css'),
@@ -78,17 +83,36 @@ def addproduct():
 @app.route('/promotion/', methods=['GET', 'POST'])
 @login_required
 def promotion():
-    id_product = int(request.args.get("product_id")) - 1
-    products = get_all_products()
-    product = products[id_product]
+    id_product = int(request.args.get("product_id")or 1)
+    product = find_product(id_product)
+    message= "no message"
 
     form = AddPromotiontForm()
 
-    return render_template("viewproduct.html",
+    if form.validate_on_submit():
+        percentage = request.form['percentage']
+        start_date = datetime.strptime(request.form['start_date'], '%Y-%m-%d')
+        end_date = datetime.strptime(request.form['end_date'], '%Y-%m-%d')
+
+        # the data to be inserted into Promotion model - the table, promotion
+        record = Promotion(start_date, end_date, percentage)
+
+        # Flask-SQLAlchemy magic adds record to database
+        db.session.add(record)
+        # save change without commit
+        db.session.flush()
+        product.promotion = record.id
+        db.session.commit()
+
+        # create a message to send to the template
+        message = f"Les donnèes du nouveau produit {product.title} ont été mises a jour."
+
+    return render_template("addpromotion.html",
                            css_file=url_for('static', filename='css/custom.css'),
                            title="Ajouter une promotion",
                            product=product,
                            form=form,
+                           message=message,
                            )
 
 
