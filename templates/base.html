@@ -32,7 +32,6 @@
                     <div>
                         <span class="nav_logo-name">Menu</span>
                         <div class="nav_list">
-                            {% if not current_user.is_authenticated %}
                             <a href="{{ url_for('index') }}" class="nav_link active">
                                 <i class='bx bx-grid-alt nav_icon'></i>
                                 <span class="nav_name">Catalogue</span>
@@ -42,13 +41,9 @@
                                 <i class='bx bx-message-square-detail nav_icon'></i>
                                 <span class="nav_name">Trouver un magasin</span>
                             </a>
-                            {% endif %}
-                            <!-- We just want to have those tabs available if the admin is logged in-->
+
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('addpromotion') }}" class="nav_link active">
-                                <i class='bx bx-user nav_icon'></i>
-                                <span class="nav_name">Catalogue</span>
-                            </a>
+                            <!-- We just want to have those tabs available if the admin is logged in-->
                             <a href="{{ url_for('addproduct') }}" class="nav_link active">
                                 <i class='bx bx-grid-alt nav_icon'></i>
                                 <span class="nav_name">Ajouter un produit</span>

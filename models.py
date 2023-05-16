@@ -94,3 +94,10 @@ class LoginForm(FlaskForm):
     login = StringField("Nom d'utilisateur :", validators=[DataRequired()])
     password = PasswordField('Mot de passe:', validators=[DataRequired()])
     submit = SubmitField("Se connecter")
+
+
+class SelectCategory(FlaskForm):
+    categories = SelectField('Trier par catégorie:',
+                           choices=[],
+                           validators=[DataRequired()])
+    submit = SubmitField("Envoyer")

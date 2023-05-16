@@ -24,6 +24,11 @@ def find_product(product_id):
     return product
 
 
+def find_product_by_category(category):
+    products = Product.query.filter_by(category=category).all()
+    return products
+
+
 def get_promotions():
     promotions = Promotion.query.all()
     return promotions

@@ -3,62 +3,70 @@
 {% block content %}
 
                 <div class ="card col-md-12 product_card">
-                    <div> File: {% print(file) %} </div>
+
                      <form class="product_card_child col-md-12" id="form1" runat="server" method="POST" enctype="multipart/form-data">
                          {{ form.csrf_token }}
 
-                         <div class="col-md-2">
-                            {{form.picture.label}} <br>
-                            {{form.picture()}}
-                        </div>
-
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    {{form.category.label}}
-                                </div>
-                                <div class="col-md-8">
-                                    {{form.category()}}
-                                </div>
+                         <div class="row " style="margin:50px">
+                            <div class="col-md-4">
+                                {{form.picture.label}} <br>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    {{form.title.label}}
-                                </div>
-                                <div class="col-md-8">
-                                    {{form.title()}}
-                                </div>
+                             <div class="col-md-8">
+                                {{form.picture()}}
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    {{form.description.label}}
+                         </div>
+
+                         <div class="row">
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {{form.category.label}}
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{form.category()}}
+                                    </div>
                                 </div>
-                                <div class="col-md-8">
-                                    {{form.description()}}
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {{form.title.label}}
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{form.title()}}
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {{form.description.label}}
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{form.description()}}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {{form.price.label}}
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{form.price()}}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {{form.unit.label}}
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{form.unit()}}
+                                    </div>
+                                 </div>
+
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    {{form.price.label}}
-                                </div>
-                                <div class="col-md-8">
-                                    {{form.price()}}
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    {{form.unit.label}}
-                                </div>
-                                <div class="col-md-8">
-                                    {{form.unit()}}
-                                </div>
-                             </div>
-
-                        </div>
+                         </div>
+                         <div style="margin:50px">
                          {{form.submit}}
+                         </div>
                     </form>
 
                 </div>

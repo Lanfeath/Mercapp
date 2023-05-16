@@ -1,6 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+            <form method="POST">
+                {{ form.csrf_token }}
+
+                <div class="row " style="margin:10px">
+                    <div class="col-md-4">
+                        {{form.categories.label}} <br>
+                    </div>
+                     <div class="col-md-6">
+                        {{form.categories()}}
+                    </div>
+                    <div  class="col-md-2">
+                        {{form.submit}}
+                    </div>
+                </div>
+            </form>
 
             {% for product in products %}
                 <div class ="card col-md-6 ">
@@ -30,6 +45,18 @@
                             {% endif %}
                         </div>
                     </div>
+
+                    {% if current_user.is_authenticated %}
+                        <div class="row ">
+                                <a class="border" href="{{ url_for('delete_product',product_id=product.id  ) }}" >Supprimer le produit </a>
+                            {% if product.promotion %}
+                                <a class="border existing_promotion" href="{{ url_for('promotion',product_id= product.id ) }}" >Modifier la promotion </a>
+                            {% else %}
+                                <a class="border new_promotion" href="{{ url_for('promotion',product_id=product.id  ) }}" >Ajouter une promotion </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
                 </div>
 
             {% endfor %}

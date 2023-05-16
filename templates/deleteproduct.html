@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+                <div class ="card col-md-12 product_card">
+
+                    <div class="row">
+                        <div class="col-md-3 image">
+                            <img class="img-circle" src="{{product.picture}}">
+                        </div>
+                        <div class="col-md-3 border product">
+                            <p>{{product.title}}</p>
+                        </div>
+                        <div class="col-md-3 align-middle border category">
+                            <p>{{product.category}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 border description_product">
+                            <p>{{product.description}}</p>
+                        </div>
+                        <div class="col-md-3 border price">
+                            <p>{{product.price |float }} {{product.unit}}</p>
+                        </div>
+                    </div>
+
+
+                    <form class="product_card_child col-md-12 row" style="margin:20px" method="POST" >
+                        <input type="submit" value="Confirmer la suppression">
+                    </form>
+                </div>
+
+{% endblock %}

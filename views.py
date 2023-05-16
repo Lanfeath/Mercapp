@@ -14,43 +14,32 @@ login_manager.login_view = "login"
 # Config options - Make sure you created a 'config.py' file.
 app.config.from_object('config')
 
-from .utils import get_all_products, find_admin, find_product, get_promotions, get_all_categories
+from .utils import *
 from .models import *
 
 
 @app.route('/')
-@app.route("/index/")
+@app.route("/index/" , methods=['GET', 'POST'])
 def index():
     product_database = get_all_products()
     promotions = get_promotions()
     categories = get_all_categories()
+
+    form = SelectCategory()
+    form.categories.choices = [(category.title, category.title) for category in categories]
+
+    if form.validate_on_submit():
+        category = request.form['categories']
+        product_database=find_product_by_category(category) or get_all_products()
+
 
     return render_template("index.html",
                            css_file=url_for('static', filename='css/custom.css'),
                            title="Notre catalogue de produits",
                            products=product_database,
                            promotions=promotions,
-                           categories=categories
-                           )
-
-
-@app.route('/viewproduct/', methods =["GET"])
-@login_required
-def addpromotion():
-
-    message = request.args.get('message')
-
-    product_database = get_all_products()
-    promotions = get_promotions()
-    categories = get_all_categories()
-
-    return render_template("viewproduct.html",
-                           css_file=url_for('static', filename='css/custom.css'),
-                           title="Modifier le catalogue",
-                           products=product_database,
-                           promotions=promotions,
                            categories=categories,
-                           message=message,
+                           form=form
                            )
 
 
@@ -59,7 +48,6 @@ def addpromotion():
 def addproduct():
     form = AddProductForm()
     form.category.choices = [(category.title, category.title) for category in get_all_categories()]
-    picture=""
 
     if form.validate_on_submit():
         title = request.form['title']
@@ -67,7 +55,7 @@ def addproduct():
         description = request.form['description']
         price = request.form['price']
         unit = request.form['unit']
-        promotion=None
+        promotion = None
 
         # Save picture in file config as UPLOAD
         f = form.picture.data
@@ -90,15 +78,15 @@ def addproduct():
     return render_template('addproduct.html',
                            css_file=url_for('static', filename='css/custom.css'),
                            title="Ajouter un produit",
-                           form=form,)
+                           form=form, )
 
 
 @app.route('/promotion/', methods=['GET', 'POST'])
 @login_required
 def promotion():
-    id_product = int(request.args.get("product_id")or 1)
+    id_product = int(request.args.get("product_id") or 1)
     product = find_product(id_product)
-    message= "no message"
+    message = "no message"
 
     form = AddPromotiontForm()
 
@@ -133,9 +121,9 @@ def promotion():
 def login():
     message = ""
 
-    # if user already logged in direct to viewproduct.html
+    # if user already logged in direct to index.html
     if current_user.is_authenticated:
-        return redirect(url_for('viewproduct'))
+        return redirect(url_for('index'))
 
     form = LoginForm()
 
@@ -163,6 +151,28 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("login"))
+
+
+@app.route('/deleteproduct/', methods=["POST", "GET"])
+def delete_product():
+    id_product = int(request.args.get("product_id") or 1)
+    product = find_product(id_product)
+    message = "no message"
+
+    if request.method == "POST":
+        db.session.delete(product)
+        db.session.commit()
+
+    # create a message to send to the template
+        message = f"Le produit {product.title} a été mises supprimé."
+        return redirect(url_for("index", message=message))
+
+    return render_template("deleteproduct.html",
+                           css_file=url_for('static', filename='css/custom.css'),
+                           title="Supprimer un produit",
+                           product=product,
+                           message=message,
+                           )
 
 
 if __name__ == "__main__":

@@ -165,7 +165,7 @@ a{
 }
 
 .product_card_child{
-    position:absolute; top:40%;
+    position:absolute; top:10%;
     height:10em;
     margin-top:-5em;
 }
