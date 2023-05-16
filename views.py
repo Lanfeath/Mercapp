@@ -2,6 +2,8 @@ from flask import Flask, flash, render_template, request, url_for, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
+import os
+import uuid
 
 app = Flask(__name__)
 
@@ -12,7 +14,7 @@ login_manager.login_view = "login"
 # Config options - Make sure you created a 'config.py' file.
 app.config.from_object('config')
 
-from .utils import get_all_products, find_admin, find_product, get_promotions
+from .utils import get_all_products, find_admin, find_product, get_promotions, get_all_categories
 from .models import *
 
 
@@ -21,12 +23,14 @@ from .models import *
 def index():
     product_database = get_all_products()
     promotions = get_promotions()
+    categories = get_all_categories()
 
     return render_template("index.html",
                            css_file=url_for('static', filename='css/custom.css'),
                            title="Notre catalogue de produits",
                            products=product_database,
-                           promotions=promotions
+                           promotions=promotions,
+                           categories=categories
                            )
 
 
@@ -38,12 +42,14 @@ def addpromotion():
 
     product_database = get_all_products()
     promotions = get_promotions()
+    categories = get_all_categories()
 
     return render_template("viewproduct.html",
                            css_file=url_for('static', filename='css/custom.css'),
-                           title="Ajouter une promotion",
+                           title="Modifier le catalogue",
                            products=product_database,
                            promotions=promotions,
+                           categories=categories,
                            message=message,
                            )
 
@@ -52,16 +58,23 @@ def addpromotion():
 @login_required
 def addproduct():
     form = AddProductForm()
-    message = ""
+    form.category.choices = [(category.title, category.title) for category in get_all_categories()]
+    picture=""
 
     if form.validate_on_submit():
         title = request.form['title']
         category = request.form['category']
         description = request.form['description']
         price = request.form['price']
-        picture = "d"
         unit = request.form['unit']
-        promotion = 0
+        promotion=None
+
+        # Save picture in file config as UPLOAD
+        f = form.picture.data
+        picture_title = str(uuid.uuid4()) + ".jpg"
+        f.save(os.path.join(app.config['UPLOAD'], picture_title))
+
+        picture = url_for('static', filename='temp/') + picture_title
 
         # the data to be inserted into Product model - the table, product
         record = Product(title, description, price, picture, category, promotion, unit)
@@ -71,13 +84,13 @@ def addproduct():
         db.session.commit()
 
         # create a message to send to the template
-        message = f"Les donnèes du nouveau produit {title} ont été insérées."
-        return redirect(url_for("viewproduct", message=message))
+        message = f"Les données du nouveau produit {title} ont été insérées."
+        return redirect(url_for("index", message=message))
 
     return render_template('addproduct.html',
                            css_file=url_for('static', filename='css/custom.css'),
                            title="Ajouter un produit",
-                           form=form)
+                           form=form,)
 
 
 @app.route('/promotion/', methods=['GET', 'POST'])
@@ -132,7 +145,7 @@ def login():
         if user:
             if check_password_hash(user.password, form.password.data):
                 login_user(user)
-                return redirect(url_for("viewproduct"))
+                return redirect(url_for("index"))
             else:
                 message = "mauvais mot de passe"
         else:

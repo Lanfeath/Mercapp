@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm, CSRFProtect
-from wtforms import StringField, SubmitField, SelectField,TextAreaField,DecimalField, DateField, HiddenField,SubmitField, FileField,PasswordField
+from wtforms import StringField, SubmitField, SelectField, TextAreaField, DecimalField, DateField, HiddenField, \
+    SubmitField, FileField, PasswordField
 from wtforms.validators import DataRequired, Length
 from flask_login import UserMixin
 from flask import url_for, redirect
@@ -9,6 +10,7 @@ from .views import app, login_manager
 
 # Create database connection object
 db = SQLAlchemy(app)
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -65,26 +67,27 @@ class Category(db.Model):
     def __init__(self, title):
         self.title = title
 
+
 class AddProductForm(FlaskForm):
     id_field = HiddenField()
     title = StringField('Nom du produit:', validators=[DataRequired(), Length(2, 40)])
     category = SelectField('Catégorie associée:',
-                        choices=[('fruits', 'Fruits'), ('legumes', 'Légumes'), ('cosmetic', 'Cosmétique')],
-                        validators=[DataRequired()])
+                           choices=[],
+                           validators=[DataRequired()])
     description = TextAreaField('Description du produit:', validators=[DataRequired()])
-    price = DecimalField('Prix du produit:',places=2, validators=[DataRequired()])
+    price = DecimalField('Prix du produit:', places=2, validators=[DataRequired()])
     unit = SelectField('Unité:',
                        choices=[('€/Kg'), ('€')],
                        validators=[DataRequired()])
-    image    = FileField()  # IMAGE
-    submit=SubmitField()
+    picture = FileField("Selectionner votre image", validators=[DataRequired()])  # IMAGE
+    submit = SubmitField("Envoyer")
 
 
 class AddPromotiontForm(FlaskForm):
     percentage = DecimalField('% de promotion:', validators=[DataRequired()])
     start_date = DateField('Date de début de la promotion:', validators=[DataRequired()])
     end_date = DateField('Date de fin de la promotion:', validators=[DataRequired()])
-    submit = SubmitField()
+    submit = SubmitField("Envoyer")
 
 
 class LoginForm(FlaskForm):

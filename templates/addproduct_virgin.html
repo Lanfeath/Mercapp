@@ -8,8 +8,9 @@
                          {{ form.csrf_token }}
 
                          <div class="col-md-2">
-                            {{form.picture.label}} <br>
-                            {{form.picture()}}
+                                <input type='file' id="imgInp" style="display:none" />
+                                <img id="blah" style="border-radius:50%" src="{{url_for('static', filename='temp/choose_an_image.jpg')}}"
+                                     alt="your image" height="300px" width="300px"/>
                         </div>
 
                         <div class="col-md-10">

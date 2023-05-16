@@ -5,6 +5,8 @@
                     <div> {% print(message) %}</div>
                 {% endif %}
 
+                <div>{{(categories[1].title)}}</div>
+
                 {% for product in products %}
 
                 <div class ="card col-md-6 ">
@@ -16,7 +18,7 @@
                             <p>{{product.title}}</p>
                         </div>
                         <div class="col-md-3 align-middle border category">
-                            <p>{{product.category}}</p>
+                            <p>{{ product.category }}</p>
                         </div>
                     </div>
 

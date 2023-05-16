@@ -7,6 +7,11 @@ from . import models
 
 app.secret_key = "UxeifO_xxT9jAHbHqme_jQ"
 
+
+# Localisation of file to save images
+upload = './Mercapp/static/temp/'
+app.config['UPLOAD'] = upload
+
 # Connect sqlalchemy to app
 # models.db_mercapp.db.init_app(app)
 
