@@ -1,1 +1,2 @@
-web: gunicorn gettingstarted.wsgi run:app
+web: gunicorn mercapp:app
+init: FLASK_APP=run.py
