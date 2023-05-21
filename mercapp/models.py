@@ -12,7 +12,6 @@ from .views import app, login_manager
 db = SQLAlchemy(app)
 
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
