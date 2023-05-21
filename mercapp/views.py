@@ -51,6 +51,14 @@ def addproduct():
     form = AddProductForm()
     form.category.choices = [(category.title, category.title) for category in get_active_categories()]
 
+    # check if the file type is validated
+    allowed_extentions = {'png', 'jpg', 'jpeg', 'gif'}
+
+    # function to check file extension
+    def allowed_file(filename):
+        return '.' in filename and \
+            filename.rsplit('.', 1)[1].lower() in allowed_extentions
+
     if form.validate_on_submit():
         title = request.form['title']
         category = request.form['category']
@@ -60,22 +68,38 @@ def addproduct():
         promotion = None
 
         # Save picture in file config as UPLOAD
-        f = form.picture.data
-        picture_title = str(uuid.uuid4()) + ".jpg"
-        f.save(os.path.join(app.config['UPLOAD'], picture_title))
+        file = form.picture.data
 
-        picture = url_for('static', filename='temp/') + picture_title
+        if file and allowed_file(file.filename):
+            output = upload_file_to_s3(file)
 
-        # the data to be inserted into Product model - the table, product
-        record = Product(title, description, price, picture, category, promotion, unit)
+            # if upload success,will return file name of uploaded file
+            if output:
+                ## Local save
+                # picture_title = str(uuid.uuid4()) + ".jpg"
+                # file.save(os.path.join(app.config['UPLOAD'], picture_title))
+                # picture = "url_for('static', filename='temp/') "+ picture_title
 
-        # Flask-SQLAlchemy magic adds record to database
-        db.session.add(record)
-        db.session.commit()
+                ## Save on Amazon S3 bucket
 
-        # create a message to send to the template
-        message = f"Les données du nouveau produit {title} ont été insérées."
-        return redirect(url_for("index", message=message))
+                picture = "https://mercappbin.s3.eu-west-3.amazonaws.com/temp/" + output
+
+                # the data to be inserted into Product model - the table, product
+                record = Product(title, description, price, picture, category, promotion, unit)
+
+                # Flask-SQLAlchemy magic adds record to database
+                db.session.add(record)
+                db.session.commit()
+
+                # create a message to send to the template
+                message = f"Les données du nouveau produit {title} ont été insérées."
+                return redirect(url_for("index", message=message))
+
+
+            # upload failed, redirect to upload page
+            else:
+                flash("Unable to upload, try again")
+                return redirect(url_for('addproduct'))
 
     return render_template('addproduct.html',
                            css_file=url_for('static', filename='css/custom.css'),
