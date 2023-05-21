@@ -24,6 +24,7 @@ def index():
     product_database = get_all_products()
     promotions = get_promotions()
     categories = get_all_categories()
+    message=""
 
     form = SelectCategory()
     form.categories.choices = [(category.title, category.title) for category in categories]
@@ -39,7 +40,8 @@ def index():
                            products=product_database,
                            promotions=promotions,
                            categories=categories,
-                           form=form
+                           form=form,
+                           message=message
                            )
 
 

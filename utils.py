@@ -1,7 +1,7 @@
 import random
 import sqlite3 as sql
 
-from Mercapp.models import User, Product, Promotion, Category
+from .models import User, Product, Promotion, Category
 
 
 def find_admin(login):

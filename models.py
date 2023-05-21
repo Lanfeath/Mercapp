@@ -12,6 +12,7 @@ from .views import app, login_manager
 db = SQLAlchemy(app)
 
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
@@ -36,7 +37,7 @@ class Product(db.Model):
     picture = db.Column(db.String(200), nullable=False)
     category = db.Column(db.String(50), nullable=False)
     promotion = db.Column(db.Integer, nullable=True)
-    unit = db.Column(db.Integer, nullable=False)
+    unit = db.Column(db.String(50), nullable=False)
 
     def __init__(self, title, description, price, picture, category, promotion, unit):
         self.title = title
@@ -101,3 +102,8 @@ class SelectCategory(FlaskForm):
                            choices=[],
                            validators=[DataRequired()])
     submit = SubmitField("Envoyer")
+
+
+@app.cli.command()
+def init_db():
+    db.create_all()
