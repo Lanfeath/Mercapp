@@ -18,7 +18,7 @@ from .utils import *
 from .models import *
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @app.route("/index/", methods=['GET', 'POST'])
 def index():
     product_database = get_all_products()
