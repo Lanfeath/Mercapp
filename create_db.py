@@ -28,7 +28,7 @@ cursor.execute("""CREATE TABLE promotion
                   (id INTEGER PRIMARY KEY,
                    start_date DATE not null,
                    end_date DATE not null,
-                   promotion FLOAT not null)
+                   percentage FLOAT not null)
                """)
 
 # create a table
