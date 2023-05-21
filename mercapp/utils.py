@@ -1,11 +1,11 @@
 import random
 import sqlite3 as sql
 
-from .models import User, Product, Promotion, Category
+from .models import Usertable, Product, Promotion, Category
 
 
 def find_admin(login):
-    admin = User.query.filter_by(login=login).first()
+    admin = Usertable.query.filter_by(login=login).first()
     return admin
 
 

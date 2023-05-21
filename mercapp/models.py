@@ -14,7 +14,7 @@ db = SQLAlchemy(app)
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(user_id)
+    return Usertable.query.get(user_id)
 
 
 @login_manager.unauthorized_handler
@@ -22,7 +22,7 @@ def unauthorized():
     return redirect(url_for('index'))
 
 
-class User(db.Model, UserMixin):
+class Usertable(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(30), nullable=False)
