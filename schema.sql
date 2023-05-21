@@ -1,0 +1,30 @@
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  login TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE product (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  description TEXT NOT NULL,
+  price DECIMAL NOT NULL,
+  picture TEXT NOT NULL,
+  category TEXT NOT NULL,
+  promotion INTEGER,
+  unit TEXT NOT NULL
+);
+
+
+CREATE TABLE promotion (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  percentage DECIMAL NOT NULL
+);
+
+
+CREATE TABLE category (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL
+);
