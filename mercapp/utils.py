@@ -1,6 +1,6 @@
 import os
 from werkzeug.utils import secure_filename
-
+import boto3, botocore
 
 from .models import Usertable, Product, Promotion, Category
 
@@ -39,17 +39,10 @@ def get_promotions():
     return promotions
 
 
-# Config S3:
-aws_bucket_name="mercappbin"
-aws_access_key="AKIA4TJLCGSXLJYZOA4M"
-aws_secret_access_key="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"
-
-import boto3, botocore
-
 s3 = boto3.client(
     "s3",
-    aws_access_key_id=aws_access_key,
-    aws_secret_access_key=aws_secret_access_key
+    aws_access_key_id=os.getenv('AWS_ACCESS_KEY'),
+    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
 )
 
 
@@ -58,7 +51,7 @@ def upload_file_to_s3(file, acl="public-read"):
     try:
         s3.upload_fileobj(
             file,
-            aws_bucket_name,
+            os.getenv("AWS_BUCKET_NAME"),
             file.filename,
             ExtraArgs={
                 "ACL": acl,

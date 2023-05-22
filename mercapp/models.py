@@ -1,8 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm, CSRFProtect
-from wtforms import StringField, SubmitField, SelectField, TextAreaField, DecimalField, DateField, HiddenField, \
+from wtforms import StringField, SelectField, TextAreaField, DecimalField, DateField, HiddenField, \
     SubmitField, FileField, PasswordField
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Length, NumberRange
 from flask_login import UserMixin
 from flask import url_for, redirect
 
@@ -84,7 +84,7 @@ class AddProductForm(FlaskForm):
 
 
 class AddPromotiontForm(FlaskForm):
-    percentage = DecimalField('% de promotion:', validators=[DataRequired()])
+    percentage = DecimalField('% de promotion:', validators=[DataRequired(), NumberRange(min=0, max=99)])
     start_date = DateField('Date de début de la promotion:', validators=[DataRequired()])
     end_date = DateField('Date de fin de la promotion:', validators=[DataRequired()])
     submit = SubmitField("Envoyer")
@@ -100,7 +100,7 @@ class SelectCategory(FlaskForm):
     categories = SelectField('Trier par catégorie:',
                            choices=[],
                            validators=[DataRequired()])
-    submit = SubmitField("Envoyer")
+    submit = SubmitField("Rechercher")
 
 
 @app.cli.command()

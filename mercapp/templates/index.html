@@ -40,7 +40,7 @@
                             <p {% if product.promotion %} class="old_price"{% endif %}>{{product.price |float }} {{product.unit}}</p>
                             {% if product.promotion %}
                                 <p {% if product.promotion %} class="prom_price"{% endif %}>
-                                    {% print(product.price * (1 - promotions[product.promotion -1].percentage))|round(2, 'floor') %} {{product.unit}}
+                                    {% print(product.price  * (100 - promotions[product.promotion -1].percentage) / 100)|round(2, 'floor') %} {{product.unit}}
                                 </p>
                             {% endif %}
                         </div>

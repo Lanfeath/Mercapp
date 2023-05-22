@@ -1,8 +1,10 @@
+### script.py used to test scripts
+
 import sqlite3
 from werkzeug.security import check_password_hash, generate_password_hash
 #
-conn = sqlite3.connect("mercapp.db")
-cursor = conn.cursor()
+# conn = sqlite3.connect("mercapp.db")
+# cursor = conn.cursor()
 # #
 # # # insert categories records
 # #
@@ -13,22 +15,4 @@ cursor = conn.cursor()
 # # cursor.executemany("INSERT INTO category VALUES (?,?)", categories)
 # # conn.commit()
 #
-# # insert admin records
-pasword_admin = generate_password_hash("iM4Dm1N")
-pasword_test = generate_password_hash("test")
-# #
-# # admin = [('0', 'admin', pasword_admin),
-# #          ('1', 'test', pasword_test)]
-# #
-# # cursor.executemany("INSERT INTO user VALUES (?,?,?)", admin)
-# # conn.commit()
-#
-print(f"admin: " + pasword_admin)
-print (f"<br> test: " + pasword_test)
-#
-# # # insert a record into the administrator table in the db_mercapp database
-# cursor.execute("""ALTER TABLE user
-#                 RENAME TO usertable;"""
-#                )
-# # save data
-# conn.commit()
+

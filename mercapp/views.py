@@ -167,7 +167,7 @@ def login():
 
     return render_template("login.html",
                            css_file=url_for('static', filename='css/custom.css'),
-                           title="Page de connection",
+                           title="Page de connexion",
                            form=form,
                            message=message,
                            )
