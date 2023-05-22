@@ -81,8 +81,7 @@ def addproduct():
                 # picture = "url_for('static', filename='temp/') "+ picture_title
 
                 ## Save on Amazon S3 bucket
-
-                picture = "https://mercappbin.s3.eu-west-3.amazonaws.com/temp/" + output
+                picture = "https://mercappbin.s3.eu-west-3.amazonaws.com/temp/" + str(output)
 
                 # the data to be inserted into Product model - the table, product
                 record = Product(title, description, price, picture, category, promotion, unit)
@@ -93,6 +92,7 @@ def addproduct():
 
                 # create a message to send to the template
                 message = f"Les données du nouveau produit {title} ont été insérées."
+
                 return redirect(url_for("index", message=message))
 
 

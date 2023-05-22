@@ -24,6 +24,7 @@ def get_active_categories():
     categories = Category.query.filter(Category.title != "Aucune").all()
     return categories
 
+
 def find_product(product_id):
     product = Product.query.filter_by(id=product_id).first()
     return product
@@ -52,7 +53,7 @@ def upload_file_to_s3(file, acl="public-read"):
         s3.upload_fileobj(
             file,
             os.getenv("AWS_BUCKET_NAME"),
-            file.filename,
+            filename,
             ExtraArgs={
                 "ACL": acl,
                 "ContentType": file.content_type
@@ -64,4 +65,4 @@ def upload_file_to_s3(file, acl="public-read"):
         return e
 
     # after upload file to s3 bucket, return filename of the uploaded file
-    return file.filename
+    return filename
