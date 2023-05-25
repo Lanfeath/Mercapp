@@ -14,8 +14,12 @@ For the exam was required to develop:
 - a database --> PostgreSQL is mandatory.
 
 <h2>How to install and run the project:</h2>
-TBD
+Either go on the Heroku Link
+If you want to run it on your own server:
+ - download the git repository
+ - install the requirements.txt via pip
+ - run run.py
 
 <h2>How to use the project:</h2>
 This will be deployed on Heroku.<br>
-Link to come.
+Link: https://mercapp.herokuapp.com/
