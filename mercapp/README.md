@@ -16,9 +16,9 @@ For the exam was required to develop:
 <h2>How to install and run the project:</h2>
 Either go on the Heroku Link
 If you want to run it on your own server:
- - download the git repository
- - install the requirements.txt via pip
- - run run.py
+ <ul> <li>download the git repository</li>
+ <li>install the requirements.txt via pip </li>
+ <li>run run.py </li>
 
 <h2>How to use the project:</h2>
 This will be deployed on Heroku.<br>
